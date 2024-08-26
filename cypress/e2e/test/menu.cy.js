@@ -11,9 +11,6 @@ describe("Probar navegación a través del menú Multimedia", () => {
         cy.get('#mat-form-field-label-3 > .ark-mat-label').type('N9j^u9&Hm@dz2Kcs')
         //Hacemos clic en el botón inicio de sesion
         cy.get('span.ark-btn-loader > :nth-child(1)').click();
-
-        // Visitamos la pagina del dashboard de TeKus
-        //cy.visit('https://qalab.invertebrado.co/screens/multimedia')
     })
     it('Debería navegar al menú Multimedia y verificar el contenido', () => {
       // Hacemos clic en la opción del menú "Multimedia"
