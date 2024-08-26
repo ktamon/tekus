@@ -24,6 +24,10 @@ describe("Probar navegación a través del menú Multimedia", () => {
 
       // Verificamos el tamaño
       cy.get('div:nth-child(1) > div > div > div > div > div > div.row.ark-header-card > div.col.d-flex.align-items-center.justify-content-start > span.ark-date-highlight.ng-star-inserted > span').should('contain', '1.02MB');
+    
+      // Verificar identificar unico
+      cy.get('div:nth-child(1) > div > div > div > div > div > div.row.ark-header-card > div.col.d-flex.align-items-center.justify-content-start > span.ark-card-content-id.ng-star-inserted').should('contain','MD-5')
+    
     }
   )
 })
