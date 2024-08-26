@@ -1,35 +1,47 @@
-
+import { loginPage } from '../../support/page/loginpage'
+import { menuPage } from '../../support/page/menupage'
 
 describe("Probar navegación a través del menú Multimedia", () => {
 
-    before(() => {
-        // Visitamos la pagina de inicio de sesion de TeKus
-        cy.visit('https://qalab.invertebrado.co')
-        //Introducimos el Nombre de usuario o correo electronico
-        cy.get('#mat-input-0').type('qatester')
-        //Introducimos la contraseña
-        cy.get('#mat-form-field-label-3 > .ark-mat-label').type('N9j^u9&Hm@dz2Kcs')
-        //Hacemos clic en el botón inicio de sesion
-        cy.get('span.ark-btn-loader > :nth-child(1)').click();
-    })
-    it('Debería navegar al menú Multimedia y verificar el contenido', () => {
-      // Hacemos clic en la opción del menú "Multimedia"
-      cy.get('nav').contains('Multimedia').click();
+  before(() => {
 
-      // Verificamos que la URL cambie a la página de Multimedia
-      cy.url().should('include', '/multimedia');
+    // Visitamos la pagina de inicio de sesion de TeKus
+    loginPage.navigate();
 
-      // Verificamos el tamaño
-      cy.get('div:nth-child(1) > div > div > div > div > div > div.row.ark-header-card > div.col.d-flex.align-items-center.justify-content-start > span.ark-date-highlight.ng-star-inserted > span').should('contain', '1.02MB');
-    
-      // Verificar identificar unico
-      cy.get('div:nth-child(1) > div > div > div > div > div > div.row.ark-header-card > div.col.d-flex.align-items-center.justify-content-start > span.ark-card-content-id.ng-star-inserted').should('contain','MD-5')
-    
-      //Verificar previsualizacion
-      cy.get('div:nth-child(1) > div > div > div > div > div > div.ark-card-media-info-content > div.ark-image-container > img').should('be.visible')
+    //Arrange
+    //Inicializar constantes
+    const username = 'qatester';
+    const password = 'N9j^u9&Hm@dz2Kcs';
 
-      //Verificar descripción
-      cy.get('div:nth-child(1) > div > div > div > div > div > div.row.ark-card-title-content > div > a.mat-tooltip-trigger.ark-card-title').should('contain','Tekus horizontal.png')
-    }
+    //Introducimos el Nombre de usuario o correo electronico
+    loginPage.fillUsername(username);
+    //Introducimos la contraseña
+    loginPage.fillPassword(password);
+    //Hacemos clic en el botón inicio de sesion
+    loginPage.submit();
+  })
+  it('Debería navegar al menú Multimedia y verificar el contenido', () => {
+
+
+    //Actions
+    // Hacemos clic en la opción del menú "Multimedia"
+    cy.get('nav').contains('Multimedia').click();
+
+    //Assert
+    // Verificamos que la URL cambie a la página de Multimedia
+    cy.url().should('include', '/multimedia');
+
+    // Verificamos el tamaño
+    menuPage.size.should('contain', '1.02MB');
+
+    // Verificar identificar unico
+    menuPage.id.should('contain', 'MD-5')
+
+    //Verificar previsualizacion
+    menuPage.preview.should('be.visible')
+
+    //Verificar descripción
+    menuPage.description.should('contain', 'Tekus horizontal.png')
+  }
   )
 })
