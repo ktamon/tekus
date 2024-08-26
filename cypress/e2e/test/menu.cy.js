@@ -28,9 +28,11 @@ describe("Probar navegación a través del menú Multimedia", () => {
       // Verificar identificar unico
       cy.get('div:nth-child(1) > div > div > div > div > div > div.row.ark-header-card > div.col.d-flex.align-items-center.justify-content-start > span.ark-card-content-id.ng-star-inserted').should('contain','MD-5')
     
-      //Verificar descripción
+      //Verificar previsualizacion
       cy.get('div:nth-child(1) > div > div > div > div > div > div.ark-card-media-info-content > div.ark-image-container > img').should('be.visible')
 
+      //Verificar descripción
+      cy.get('div:nth-child(1) > div > div > div > div > div > div.row.ark-card-title-content > div > a.mat-tooltip-trigger.ark-card-title').should('contain','Tekus horizontal.png')
     }
   )
 })
