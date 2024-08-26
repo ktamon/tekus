@@ -22,8 +22,8 @@ describe("Probar navegación a través del menú Multimedia", () => {
       // Verificamos que la URL cambie a la página de Multimedia
       cy.url().should('include', '/multimedia');
 
-      // Verificamos que el contenido de la página de servicios sea el esperado
-      cy.get('h1').should('contain.text', 'Nuestros Servicios');
+      // Verificamos el tamaño
+      cy.get('div:nth-child(1) > div > div > div > div > div > div.row.ark-header-card > div.col.d-flex.align-items-center.justify-content-start > span.ark-date-highlight.ng-star-inserted > span').should('contain', '1.02MB');
     }
   )
 })
