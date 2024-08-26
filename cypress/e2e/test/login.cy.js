@@ -1,18 +1,29 @@
-
+import{loginPage}from '../../support/page/loginpage'
 
 describe("Probar pagina de rigistro TeKus", () => {
    
     before(() => {
+       
         // Visitamos la pagina de inicio de sesion de TeKus
-        cy.visit('https://qalab.invertebrado.co')
+        loginPage.navigate();
     })
+    
     it('Deberia permitir a los usuarios iniciar sesión con credenciales válidas', () => {
+       
+        //Arrange
+        //Inicializar constantes
+        const username = 'qatester';  
+        const password = 'N9j^u9&Hm@dz2Kcs';
+
+        //Actions
         //Introducimos el Nombre de usuario o correo electronico
-        cy.get('#mat-input-0').type('qatester')
+        loginPage.fillUsername(username);
         //Introducimos la contraseña
-        cy.get('#mat-form-field-label-3 > .ark-mat-label').type('N9j^u9&Hm@dz2Kcs')
+        loginPage.fillPassword(password);
         //Hacemos clic en el botón inicio de sesion
-        cy.get('span.ark-btn-loader > :nth-child(1)').click();
+        loginPage.submit();
+
+        //Assert
         // Verificamos que el usuario haya sido redirigido al dashboard de TeKus
         cy.url().should('eq', 'https://qalab.invertebrado.co/screens/dashboard') // => true
     }
