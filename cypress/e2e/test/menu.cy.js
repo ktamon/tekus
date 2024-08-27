@@ -22,7 +22,6 @@ describe("Probar navegación a través del menú Multimedia", () => {
   })
   it('Debería navegar al menú Multimedia y verificar el contenido', () => {
 
-
     //Actions
     // Hacemos clic en la opción del menú "Multimedia"
     cy.get('nav').contains('Multimedia').click();
